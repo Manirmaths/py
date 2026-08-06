@@ -18,7 +18,9 @@ figure_dir <- file.path(project_root, "manuscript", "figures")
 dir.create(figure_dir, recursive = TRUE, showWarnings = FALSE)
 
 model_metrics <- read_csv(file.path(data_dir, "phase10_model_metrics.csv"), show_col_types = FALSE)
-monthly_metrics <- read_csv(file.path(data_dir, "phase10_monthly_metrics.csv"), show_col_types = FALSE) %>%
+monthly_metrics <- list.files(data_dir, pattern = "^phase10_monthly_regret_.*\\.csv$", full.names = TRUE) %>%
+  lapply(read_csv, show_col_types = FALSE) %>%
+  bind_rows() %>%
   mutate(date = as.Date(date))
 simulation_summary <- read_csv(file.path(data_dir, "phase10_simulation_summary.csv"), show_col_types = FALSE)
 
@@ -71,7 +73,7 @@ theme_manuscript <- function(base_size = 10.5) {
 }
 
 save_plot <- function(plot, stem, width, height) {
-  ggsave(file.path(figure_dir, paste0(stem, ".pdf")), plot, width = width, height = height, units = "in", device = cairo_pdf)
+  ggsave(file.path(figure_dir, paste0(stem, ".pdf")), plot, width = width, height = height, units = "in", device = "pdf")
   ggsave(file.path(figure_dir, paste0(stem, ".png")), plot, width = width, height = height, units = "in", dpi = 320, bg = "white")
 }
 
@@ -97,7 +99,7 @@ p1 <- ggplot(stages) +
   geom_text(aes(x = mid, y = 1.08, label = stage), fontface = "bold", size = 3.45) +
   geom_text(aes(x = mid, y = 0.89, label = detail), size = 2.75, lineheight = 0.95) +
   geom_segment(data = feedback, aes(x = x, xend = xend, y = y, yend = yend), inherit.aes = FALSE,
-               arrow = arrow(length = unit(0.12, "inches"), type = "closed"), linewidth = 0.7, color = "#374151") +
+               arrow = arrow(length = grid::unit(0.12, "inches"), type = "closed"), linewidth = 0.7, color = "#374151") +
   geom_text(data = feedback, aes(x = (x + xend) / 2, y = y - 0.11, label = label), inherit.aes = FALSE, size = 2.75) +
   annotate("text", x = 2017.25, y = 0.48, label = "Three-month target horizon: adaptive updates at origin t use only errors from origins t-3 or earlier.",
            hjust = 0, size = 3.0, fontface = "italic", color = "#4D4D4D") +
@@ -158,7 +160,7 @@ plot_cumulative_regret <- function(dataset_name, title, stem) {
     filter(dataset == dataset_name, date >= as.Date("2023-01-01"), model %in% regret_models) %>%
     arrange(model, date) %>%
     group_by(model) %>%
-    mutate(cumulative_regret = cumsum(pmax(dynamic_regret, 0))) %>%
+    mutate(cumulative_regret = cumsum(dynamic_regret)) %>%
     ungroup() %>%
     mutate(model_label = factor(model_labels[model], levels = model_labels[regret_models]))
 
