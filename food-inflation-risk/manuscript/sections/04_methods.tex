@@ -1,0 +1,153 @@
+\section{Forecasting methods}\label{forecasting-methods}
+
+\subsection{4.1 Quantile loss and
+coverage}\label{quantile-loss-and-coverage}
+
+Forecast accuracy is measured by the q=0.90 pinball loss
+
+\[
+L_{0.90}(y,\widehat q)=\left(0.90-\mathbf{1}\{y<\widehat q\}\right)(y-\widehat q).
+\]
+
+Lower values are better. Marginal coverage is the share of realised
+outcomes satisfying \(y\leq\widehat q\). A well-calibrated q90 forecast
+should have coverage near 0.90, but coverage alone is insufficient
+because arbitrarily high forecasts can over-cover. Pinball loss jointly
+penalises underprediction and excessive conservatism.
+
+\subsection{4.2 Frozen base quantile
+model}\label{frozen-base-quantile-model}
+
+A quantile LightGBM model is trained through December 2020 using
+seasonal terms, recent item-level price changes, backward three-month
+inflation, rolling means and volatility, and cross-sectional food-price
+summaries. Categorical identities describe items, markets or entities
+where available. The model uses the quantile objective at
+\(\alpha=0.90\), learning rate 0.05, 31 leaves, 250 minimum observations
+per leaf, feature and bagging fractions of 0.85, L2 penalty 2, and 120
+boosting rounds. The base model is frozen before 2021 so that all
+subsequent residuals are honest pseudo-out-of-sample errors. LightGBM is
+used as a flexible cross-sectional ranking model, not as the sole
+adaptation mechanism (\citeproc{ref-ke2017lightgbm}{Ke et al. 2017}).
+
+\subsection{4.3 Four expert forecasts}\label{four-expert-forecasts}
+
+\textbf{Table 2. Expert forecasts supplied to the controller}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Expert}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Definition}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Adaptation channel}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Static empirical q90 & A single historical 90th percentile estimated
+before the test period. & None; stable-regime benchmark. \\
+Fixed-persistence gate & Static q90 outside stress; frozen base plus
+EWMA common residual shift for six months after a stress alarm. & Fast
+common level-shift adaptation. \\
+Global conformal (12m) & Frozen base plus the 90th percentile of matured
+residuals from the previous 12 origin months. & Rolling global
+calibration. \\
+Pure hierarchical conformal & Frozen base plus a partially pooled
+residual quantile using global and group-specific residual histories. &
+Commodity/market heterogeneity. \\
+\end{longtable}
+
+Notes: All residual histories are truncated at t-3 at forecast origin t.
+The conformal experts are empirical residual calibrators and do not
+claim finite-sample conditional coverage under dependence and
+distribution shift.
+
+\subsection{4.4 Stress signal and fixed-persistence
+expert}\label{stress-signal-and-fixed-persistence-expert}
+
+The observable food stress signal is formed from robust positive
+z-scores of the cross-sectional median and 90th percentile of current
+monthly price changes and backward three-month inflation. Each source is
+standardised against its pre-break history. The fixed-persistence expert
+activates when the food stress percentile exceeds the 95th pre-break
+percentile and remains active for six forecast origins.
+
+When active, the forecast replaces the static quantile with the frozen
+base plus an exponentially weighted estimate of the 90th percentile of
+matured residuals. The EWMA update rate is 0.20. The six-month
+persistence was selected before the extended evaluation and is
+intentionally simple; it later becomes a source of recovery
+overforecasting.
+
+\subsection{4.5 Global and hierarchical residual
+calibration}\label{global-and-hierarchical-residual-calibration}
+
+Global conformal calibration adds the empirical 90th percentile of
+residuals from the preceding 12 matured origin months to the frozen base
+forecast. Hierarchical calibration uses a six-month window and shrinks
+group-specific residual quantiles toward a global residual quantile with
+prior strength \(\kappa=50\). In the NBS continuation, the local group
+is the food item. In WFP, the hierarchy includes commodity, market, and
+market-commodity-unit series effects.
+
+The hierarchy is an empirical partial-pooling estimator. It can improve
+weak-group calibration when local histories are sparse, but it can also
+increase pooled loss if heterogeneous adjustments respond to noise. This
+trade-off motivates the controller rather than selecting hierarchy as a
+universally preferred model.
+
+\subsection{4.6 Regime-aware
+meta-controller}\label{regime-aware-meta-controller}
+
+The controller combines the four expert forecasts. It first estimates,
+from 2021 only, each expert's expected loss within six regime cells
+defined by three levels of current stress and an indicator of high
+residual heterogeneity. Cell means are shrunk toward the global 2021
+expert-loss vector with prior strength three.
+
+At origin t, the controller updates an exponentially weighted
+expert-loss state only when the corresponding target has matured. Let
+\(p_{j,r_t}\) denote the normalised 2021 prior loss of expert j in the
+current regime \(r_t\), and let \(\bar\ell_{j,t}\) denote the normalised
+delayed EWMA loss. The combined score is
+
+\[
+s_{jt}=\gamma p_{j,r_t}+(1-\gamma)\bar\ell_{j,t},
+\]
+
+with \(\gamma=0.75\). Target mixture weights are obtained from a softmax
+transformation
+
+\[
+w^{\star}_{jt}=\frac{\exp(-\eta s_{jt})}{\sum_k\exp(-\eta s_{kt})},
+\]
+
+where \(\eta=10\). The selected inertia parameter equals one, so the
+target weights are used directly after delayed-loss updating. When the
+inherited fixed-persistence alarm is active, 75\% of the final weight is
+assigned to the fixed-gate expert and the remaining 25\% is distributed
+according to the loss-aware mixture. The controller forecast is the
+convex combination of the four expert q90 forecasts.
+
+\subsection{4.7 Hyperparameter selection and
+evaluation}\label{hyperparameter-selection-and-evaluation}
+
+Controller hyperparameters are selected on 2022 only from 432
+configurations. The validation objective averages loss relative to the
+static expert across NBS and WFP, adds 0.30 times the absolute q90
+coverage error, and adds 0.02 times regime-switch and weight-turnover
+friction. This prevents selection on one source or raw loss scale alone.
+
+Evaluation reports pooled pinball loss, equal-month loss, coverage,
+subgroup coverage dispersion, dynamic regret relative to the best expert
+in each month, and the share of the static-to-oracle gap closed.
+Month-block bootstrap intervals resample forecast-origin months so that
+common within-month shocks remain intact. Simulations contain 60 series
+in six latent groups, 96 months, Student-t disturbances, a three-month
+feedback delay, and six no-break or structural-break scenarios.
