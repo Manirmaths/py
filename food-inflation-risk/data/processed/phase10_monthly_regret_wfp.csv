@@ -1,0 +1,191 @@
+dataset,date,model,dynamic_regret
+WFP market observations,2023-01-01,Static empirical q90,0.4217245152151836
+WFP market observations,2023-01-01,Fixed-persistence gate,0.4217245152151836
+WFP market observations,2023-01-01,Global conformal (12m),0.0
+WFP market observations,2023-01-01,Pure hierarchical conformal,7.472713322004027
+WFP market observations,2023-01-01,Stress-override inertial expert mixture,-0.0255170270671336
+WFP market observations,2023-02-01,Static empirical q90,0.0
+WFP market observations,2023-02-01,Fixed-persistence gate,0.0
+WFP market observations,2023-02-01,Global conformal (12m),0.6656153145397505
+WFP market observations,2023-02-01,Pure hierarchical conformal,0.1077512404619822
+WFP market observations,2023-02-01,Stress-override inertial expert mixture,-0.1638237545722285
+WFP market observations,2023-03-01,Static empirical q90,1.299995759927164
+WFP market observations,2023-03-01,Fixed-persistence gate,1.299995759927164
+WFP market observations,2023-03-01,Global conformal (12m),0.0
+WFP market observations,2023-03-01,Pure hierarchical conformal,0.362863404900585
+WFP market observations,2023-03-01,Stress-override inertial expert mixture,0.2078307189758801
+WFP market observations,2023-04-01,Static empirical q90,3.800755352332605
+WFP market observations,2023-04-01,Fixed-persistence gate,3.800755352332605
+WFP market observations,2023-04-01,Global conformal (12m),0.0
+WFP market observations,2023-04-01,Pure hierarchical conformal,1.7609849369004502
+WFP market observations,2023-04-01,Stress-override inertial expert mixture,1.0074716423886256
+WFP market observations,2023-05-01,Static empirical q90,0.0
+WFP market observations,2023-05-01,Fixed-persistence gate,0.0
+WFP market observations,2023-05-01,Global conformal (12m),5.554354318592715
+WFP market observations,2023-05-01,Pure hierarchical conformal,6.280575810132167
+WFP market observations,2023-05-01,Stress-override inertial expert mixture,1.3140439331314226
+WFP market observations,2023-06-01,Static empirical q90,0.0
+WFP market observations,2023-06-01,Fixed-persistence gate,0.0
+WFP market observations,2023-06-01,Global conformal (12m),1.8242576449920709
+WFP market observations,2023-06-01,Pure hierarchical conformal,1.85971759875694
+WFP market observations,2023-06-01,Stress-override inertial expert mixture,0.592861321872511
+WFP market observations,2023-07-01,Static empirical q90,0.1188068106071611
+WFP market observations,2023-07-01,Fixed-persistence gate,0.457187069090736
+WFP market observations,2023-07-01,Global conformal (12m),0.0501732523151794
+WFP market observations,2023-07-01,Pure hierarchical conformal,0.0
+WFP market observations,2023-07-01,Stress-override inertial expert mixture,0.2619568108883996
+WFP market observations,2023-08-01,Static empirical q90,0.1338200921198731
+WFP market observations,2023-08-01,Fixed-persistence gate,0.0
+WFP market observations,2023-08-01,Global conformal (12m),0.0690482773144975
+WFP market observations,2023-08-01,Pure hierarchical conformal,0.0275666411072212
+WFP market observations,2023-08-01,Stress-override inertial expert mixture,0.000710201673121
+WFP market observations,2023-09-01,Static empirical q90,0.730833417694889
+WFP market observations,2023-09-01,Fixed-persistence gate,0.0311672925760824
+WFP market observations,2023-09-01,Global conformal (12m),0.0
+WFP market observations,2023-09-01,Pure hierarchical conformal,0.2273018572494693
+WFP market observations,2023-09-01,Stress-override inertial expert mixture,0.0094592757738496
+WFP market observations,2023-10-01,Static empirical q90,1.3807695964810272
+WFP market observations,2023-10-01,Fixed-persistence gate,0.7110732199707588
+WFP market observations,2023-10-01,Global conformal (12m),0.0
+WFP market observations,2023-10-01,Pure hierarchical conformal,0.4626024440989749
+WFP market observations,2023-10-01,Stress-override inertial expert mixture,0.6518856781703466
+WFP market observations,2023-12-01,Static empirical q90,2.504338047833392
+WFP market observations,2023-12-01,Fixed-persistence gate,0.1958651318702937
+WFP market observations,2023-12-01,Global conformal (12m),0.0
+WFP market observations,2023-12-01,Pure hierarchical conformal,0.1739423716661461
+WFP market observations,2023-12-01,Stress-override inertial expert mixture,0.1678942734155715
+WFP market observations,2024-01-01,Static empirical q90,0.0
+WFP market observations,2024-01-01,Fixed-persistence gate,0.3093014336554649
+WFP market observations,2024-01-01,Global conformal (12m),0.094597731093029
+WFP market observations,2024-01-01,Pure hierarchical conformal,0.6509720603447793
+WFP market observations,2024-01-01,Stress-override inertial expert mixture,0.1653746471131274
+WFP market observations,2024-02-01,Static empirical q90,1.3210832604158682
+WFP market observations,2024-02-01,Fixed-persistence gate,0.2150436887641245
+WFP market observations,2024-02-01,Global conformal (12m),0.0
+WFP market observations,2024-02-01,Pure hierarchical conformal,0.3872933187106078
+WFP market observations,2024-02-01,Stress-override inertial expert mixture,0.0987332559010782
+WFP market observations,2024-03-01,Static empirical q90,3.312430289664817
+WFP market observations,2024-03-01,Fixed-persistence gate,0.1487035231835198
+WFP market observations,2024-03-01,Global conformal (12m),0.1900756756881634
+WFP market observations,2024-03-01,Pure hierarchical conformal,0.0
+WFP market observations,2024-03-01,Stress-override inertial expert mixture,0.1951739281219104
+WFP market observations,2024-04-01,Static empirical q90,2.9206462134185065
+WFP market observations,2024-04-01,Fixed-persistence gate,0.1337008468113651
+WFP market observations,2024-04-01,Global conformal (12m),0.2251067172617729
+WFP market observations,2024-04-01,Pure hierarchical conformal,0.0
+WFP market observations,2024-04-01,Stress-override inertial expert mixture,0.2201016268772315
+WFP market observations,2024-05-01,Static empirical q90,1.544985279290095
+WFP market observations,2024-05-01,Fixed-persistence gate,0.386077164207617
+WFP market observations,2024-05-01,Global conformal (12m),0.0
+WFP market observations,2024-05-01,Pure hierarchical conformal,0.0376037255614449
+WFP market observations,2024-05-01,Stress-override inertial expert mixture,0.3153415633414718
+WFP market observations,2024-06-01,Static empirical q90,0.9452999421080336
+WFP market observations,2024-06-01,Fixed-persistence gate,0.0
+WFP market observations,2024-06-01,Global conformal (12m),0.141896885524499
+WFP market observations,2024-06-01,Pure hierarchical conformal,0.1576861278508934
+WFP market observations,2024-06-01,Stress-override inertial expert mixture,0.02935561288362
+WFP market observations,2024-07-01,Static empirical q90,0.0
+WFP market observations,2024-07-01,Fixed-persistence gate,0.0
+WFP market observations,2024-07-01,Global conformal (12m),0.107355009601882
+WFP market observations,2024-07-01,Pure hierarchical conformal,0.171038651531763
+WFP market observations,2024-07-01,Stress-override inertial expert mixture,0.049478293513177
+WFP market observations,2024-08-01,Static empirical q90,0.0
+WFP market observations,2024-08-01,Fixed-persistence gate,0.0
+WFP market observations,2024-08-01,Global conformal (12m),0.204509442163717
+WFP market observations,2024-08-01,Pure hierarchical conformal,0.2557928010901467
+WFP market observations,2024-08-01,Stress-override inertial expert mixture,0.0768699943926591
+WFP market observations,2024-09-01,Static empirical q90,0.7148121064611654
+WFP market observations,2024-09-01,Fixed-persistence gate,0.7148121064611654
+WFP market observations,2024-09-01,Global conformal (12m),0.0
+WFP market observations,2024-09-01,Pure hierarchical conformal,0.0750112369649294
+WFP market observations,2024-09-01,Stress-override inertial expert mixture,-0.0672529717676573
+WFP market observations,2024-10-01,Static empirical q90,0.0
+WFP market observations,2024-10-01,Fixed-persistence gate,0.0
+WFP market observations,2024-10-01,Global conformal (12m),0.1331557548628081
+WFP market observations,2024-10-01,Pure hierarchical conformal,0.1744217084898638
+WFP market observations,2024-10-01,Stress-override inertial expert mixture,-0.5550026619194757
+WFP market observations,2024-11-01,Static empirical q90,0.8231751652010768
+WFP market observations,2024-11-01,Fixed-persistence gate,0.8231751652010768
+WFP market observations,2024-11-01,Global conformal (12m),0.0389590808780484
+WFP market observations,2024-11-01,Pure hierarchical conformal,0.0
+WFP market observations,2024-11-01,Stress-override inertial expert mixture,-0.5651098299883293
+WFP market observations,2024-12-01,Static empirical q90,0.0
+WFP market observations,2024-12-01,Fixed-persistence gate,0.0
+WFP market observations,2024-12-01,Global conformal (12m),2.0141301101409503
+WFP market observations,2024-12-01,Pure hierarchical conformal,1.760604919644435
+WFP market observations,2024-12-01,Stress-override inertial expert mixture,0.9696843448408136
+WFP market observations,2025-01-01,Static empirical q90,0.8914739374918623
+WFP market observations,2025-01-01,Fixed-persistence gate,0.8914739374918623
+WFP market observations,2025-01-01,Global conformal (12m),0.2902353861870628
+WFP market observations,2025-01-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-01-01,Stress-override inertial expert mixture,0.3212480468563816
+WFP market observations,2025-02-01,Static empirical q90,1.0996708492699456
+WFP market observations,2025-02-01,Fixed-persistence gate,1.0996708492699456
+WFP market observations,2025-02-01,Global conformal (12m),0.1465758576299087
+WFP market observations,2025-02-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-02-01,Stress-override inertial expert mixture,0.2356671372652012
+WFP market observations,2025-03-01,Static empirical q90,1.5691381537920055
+WFP market observations,2025-03-01,Fixed-persistence gate,1.5691381537920055
+WFP market observations,2025-03-01,Global conformal (12m),0.0439386935880197
+WFP market observations,2025-03-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-03-01,Stress-override inertial expert mixture,0.6306079061394438
+WFP market observations,2025-04-01,Static empirical q90,0.870632910858081
+WFP market observations,2025-04-01,Fixed-persistence gate,0.870632910858081
+WFP market observations,2025-04-01,Global conformal (12m),0.0
+WFP market observations,2025-04-01,Pure hierarchical conformal,0.2259632686863781
+WFP market observations,2025-04-01,Stress-override inertial expert mixture,0.4375939794652375
+WFP market observations,2025-05-01,Static empirical q90,1.0411497664662326
+WFP market observations,2025-05-01,Fixed-persistence gate,1.0411497664662326
+WFP market observations,2025-05-01,Global conformal (12m),0.4498532684636886
+WFP market observations,2025-05-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-05-01,Stress-override inertial expert mixture,0.4020325696660496
+WFP market observations,2025-06-01,Static empirical q90,0.7747702655900639
+WFP market observations,2025-06-01,Fixed-persistence gate,0.7747702655900639
+WFP market observations,2025-06-01,Global conformal (12m),0.7849980976273772
+WFP market observations,2025-06-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-06-01,Stress-override inertial expert mixture,0.4123425816733057
+WFP market observations,2025-07-01,Static empirical q90,0.2787070727926695
+WFP market observations,2025-07-01,Fixed-persistence gate,0.2787070727926695
+WFP market observations,2025-07-01,Global conformal (12m),1.0381580161070918
+WFP market observations,2025-07-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-07-01,Stress-override inertial expert mixture,0.4390638047073798
+WFP market observations,2025-08-01,Static empirical q90,0.001689001633327
+WFP market observations,2025-08-01,Fixed-persistence gate,0.001689001633327
+WFP market observations,2025-08-01,Global conformal (12m),0.9260244809786666
+WFP market observations,2025-08-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-08-01,Stress-override inertial expert mixture,0.18283063277861
+WFP market observations,2025-09-01,Static empirical q90,0.0
+WFP market observations,2025-09-01,Fixed-persistence gate,0.0
+WFP market observations,2025-09-01,Global conformal (12m),0.7945032262397582
+WFP market observations,2025-09-01,Pure hierarchical conformal,0.245321039138715
+WFP market observations,2025-09-01,Stress-override inertial expert mixture,0.2585184417815096
+WFP market observations,2025-10-01,Static empirical q90,0.0224849226562309
+WFP market observations,2025-10-01,Fixed-persistence gate,0.0224849226562309
+WFP market observations,2025-10-01,Global conformal (12m),0.6160941350209086
+WFP market observations,2025-10-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-10-01,Stress-override inertial expert mixture,0.0662965250995872
+WFP market observations,2025-11-01,Static empirical q90,0.8314759477275322
+WFP market observations,2025-11-01,Fixed-persistence gate,0.8314759477275322
+WFP market observations,2025-11-01,Global conformal (12m),0.7737092780858728
+WFP market observations,2025-11-01,Pure hierarchical conformal,0.0
+WFP market observations,2025-11-01,Stress-override inertial expert mixture,0.5563998481598755
+WFP market observations,2025-12-01,Static empirical q90,3.304476900437593
+WFP market observations,2025-12-01,Fixed-persistence gate,3.304476900437593
+WFP market observations,2025-12-01,Global conformal (12m),0.0
+WFP market observations,2025-12-01,Pure hierarchical conformal,0.5630813383852589
+WFP market observations,2025-12-01,Stress-override inertial expert mixture,1.5171613355060505
+WFP market observations,2026-01-01,Static empirical q90,2.477941508815722
+WFP market observations,2026-01-01,Fixed-persistence gate,2.477941508815722
+WFP market observations,2026-01-01,Global conformal (12m),0.0
+WFP market observations,2026-01-01,Pure hierarchical conformal,1.752205620804649
+WFP market observations,2026-01-01,Stress-override inertial expert mixture,0.8862158209340518
+WFP market observations,2026-02-01,Static empirical q90,0.6527681436526134
+WFP market observations,2026-02-01,Fixed-persistence gate,0.6527681436526134
+WFP market observations,2026-02-01,Global conformal (12m),0.0
+WFP market observations,2026-02-01,Pure hierarchical conformal,1.0235403203271236
+WFP market observations,2026-02-01,Stress-override inertial expert mixture,0.0121969424441576
+WFP market observations,2026-03-01,Static empirical q90,0.0
+WFP market observations,2026-03-01,Fixed-persistence gate,0.0
+WFP market observations,2026-03-01,Global conformal (12m),0.8913060553918113
+WFP market observations,2026-03-01,Pure hierarchical conformal,2.482650319041229
+WFP market observations,2026-03-01,Stress-override inertial expert mixture,0.4329409244066227
