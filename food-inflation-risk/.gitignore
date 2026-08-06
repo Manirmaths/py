@@ -1,0 +1,21 @@
+# LaTeX build products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Generated PDFs and PNGs are CI artifacts
+manuscript/main.pdf
+protocol/protocol.pdf
+manuscript/figures/*.png
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+renv/library/
