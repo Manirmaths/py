@@ -1,24 +1,26 @@
 # Food Inflation-at-Risk under Delayed Feedback
 
-This repository contains the LaTeX manuscript, the frozen external-validation protocol, the Phase 10 forecasting code, processed result tables needed for the figures, and an R/`ggplot2` figure pipeline.
+This repository contains the canonical LaTeX manuscript, the frozen external-validation protocol, compact Phase 10 replication code, processed result tables needed for the figures, and an R/`ggplot2` figure pipeline.
 
 ## Project structure
 
 - `manuscript/main.tex` - canonical LaTeX manuscript.
+- `manuscript/sections/` - modular manuscript sections.
 - `manuscript/references.bib` - BibTeX bibliography source.
 - `manuscript/figures/` - generated publication figures; do not edit manually.
 - `protocol/protocol.tex` - frozen external-validation protocol in LaTeX.
 - `code/R/make_figures.R` - generates all six manuscript figures with `ggplot2`.
-- `code/python/build_phase10_meta_controller.py` - Phase 10 empirical and simulation analysis.
-- `data/processed/` - compact processed CSV outputs used by the R figure pipeline.
-- `.github/workflows/render-manuscript.yml` - reproducible CI build for R figures and both PDFs.
+- `code/python/run_meta_controller.py` - compact replication of the Phase 10 model ranking and regret summaries from processed outputs.
+- `data/processed/` - compact processed CSV outputs used by the R and Python pipelines.
+- `.github/workflows/render-manuscript.yml` - reproducible CI build for the R figures and both PDFs.
 
 ## Reproduce locally
 
-Requirements: R (>=4.3), `ggplot2`, `dplyr`, `readr`, `tidyr`, `scales`, `lubridate`, and a LaTeX distribution with `latexmk`.
+Requirements: R (>=4.3), `ggplot2`, `dplyr`, `readr`, `tidyr`, `scales`, `lubridate`, Python with `pandas`, and a LaTeX distribution with `latexmk`.
 
 ```bash
 make all
+python code/python/run_meta_controller.py
 ```
 
 The generated PDFs are:
