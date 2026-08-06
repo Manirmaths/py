@@ -34,15 +34,26 @@ jobs:
       - name: Generate figures with ggplot2
         run: Rscript code/R/make_figures.R
 
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: food-inflation-risk/manuscript
-          root_file: main.tex
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            lmodern
 
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: food-inflation-risk/protocol
-          root_file: protocol.tex
+      - name: Compile manuscript
+        run: |
+          cd manuscript
+          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+
+      - name: Compile frozen protocol
+        run: |
+          cd protocol
+          latexmk -pdf -interaction=nonstopmode -halt-on-error protocol.tex
 
       - uses: actions/upload-artifact@v4
         with:
