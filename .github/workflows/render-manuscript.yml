@@ -32,7 +32,9 @@ jobs:
           needs: check
 
       - name: Generate figures with ggplot2
-        run: Rscript code/R/make_figures.R
+        run: |
+          Rscript code/R/make_figures.R
+          ls -lh manuscript/figures
 
       - name: Install LaTeX
         run: |
@@ -48,14 +50,40 @@ jobs:
       - name: Compile manuscript
         run: |
           cd manuscript
-          latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+          if ! latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex; then
+            echo '=== LaTeX errors ==='
+            grep -n '^!' main.log | tail -n 30 || true
+            echo '=== main.log tail ==='
+            tail -n 220 main.log || true
+            exit 1
+          fi
 
       - name: Compile frozen protocol
         run: |
           cd protocol
-          latexmk -pdf -interaction=nonstopmode -halt-on-error protocol.tex
+          if ! latexmk -pdf -interaction=nonstopmode -halt-on-error protocol.tex; then
+            echo '=== LaTeX errors ==='
+            grep -n '^!' protocol.log | tail -n 30 || true
+            echo '=== protocol.log tail ==='
+            tail -n 220 protocol.log || true
+            exit 1
+          fi
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-build-logs
+          if-no-files-found: warn
+          path: |
+            food-inflation-risk/manuscript/main.log
+            food-inflation-risk/manuscript/main.fls
+            food-inflation-risk/protocol/protocol.log
+            food-inflation-risk/protocol/protocol.fls
+
+      - name: Upload rendered manuscript
+        if: success()
+        uses: actions/upload-artifact@v4
         with:
           name: food-inflation-risk-manuscript
           path: |
