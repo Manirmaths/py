@@ -34,6 +34,7 @@ jobs:
       - name: Generate figures with ggplot2
         run: |
           Rscript code/R/make_figures.R
+          Rscript code/R/make_research_design.R
           ls -lh manuscript/figures
 
       - name: Install LaTeX
