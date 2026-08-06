@@ -1,0 +1,36 @@
+\appendix
+
+\section{Frozen controller specification}\label{frozen-controller-specification}
+
+\textbf{Table A1. Frozen Phase 10 controller parameters}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4865}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.4865}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Parameter}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Value}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Target quantile & 0.90 \\
+Forecast horizon & 3 months \\
+Base model training end & December 2020 \\
+Regime-prior estimation & 2021 \\
+Hyperparameter selection & 2022 \\
+Delayed-loss EWMA rate & 0.50 \\
+Regime-prior weight \(\gamma\) & 0.75 \\
+Delayed-loss weight & 0.25 \\
+Softmax intensity \(\eta\) & 10 \\
+Weight inertia & 1.00 \\
+Stress override & 0.75 toward fixed-gate expert \\
+Validation coverage penalty & 0.30 \\
+Validation switching/turnover penalty & 0.02 \\
+\end{longtable}
+
+Notes: These values should remain frozen in any confirmatory external
+evaluation.

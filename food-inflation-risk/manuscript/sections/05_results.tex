@@ -1,0 +1,309 @@
+\section{Results}\label{results}
+
+\subsection{5.1 Static tail forecasts fail during the 2023 structural
+break}\label{static-tail-forecasts-fail-during-the-2023-structural-break}
+
+In the original state-commodity development test, the fixed training q90
+was exceeded by approximately 47\% of observations, rather than the
+intended 10\%. Static empirical q90 coverage fell to 52.7\%, and the
+static LightGBM coverage fell below 47\%. The problem was not primarily
+cross-sectional ranking; it was a common upward shift beyond the range
+represented in training.
+
+Delayed adaptation materially reduced the loss. The stress-gated EWMA
+model achieved pinball loss 4.230 and coverage 71.7\%, compared with
+6.836 and 52.7\% for the static empirical q90. The loss reduction was
+38.1\%. Rolling conformal calibration also improved performance, but
+coverage remained below nominal. These results motivated the later
+expert-aggregation design.
+
+\textbf{Table 3. Original locked structural-break test, January
+2023-January 2024}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3243}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Pinball loss}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Coverage}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Static empirical q90 & 6.836 & 52.7\% \\
+Static quantile LightGBM & 8.338 & 46.6\% \\
+Rolling empirical q90, 36 months & 5.634 & 59.8\% \\
+Rolling conformal-style calibration & 4.643 & 67.3\% \\
+Stress-gated delayed EWMA & 4.230 & 71.7\% \\
+\end{longtable}
+
+Notes: The target is the 90th percentile of three-month forward log
+food-price inflation. Coverage is the share of outcomes below the
+forecast quantile. The 2023 period was locked before the Phase 7
+backtest but informed the architecture of subsequent phases.
+
+\subsection{5.2 Extended NBS and external WFP
+performance}\label{extended-nbs-and-external-wfp-performance}
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig2_nbs_model_comparison.pdf}
+\caption{Pooled post-2022 q90 pinball loss in the NBS national
+continuation.}\label{fig:figure-2}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig3_wfp_model_comparison.pdf}
+\caption{Pooled post-2022 q90 pinball loss in the external WFP market
+panel.}\label{fig:figure-3}
+\end{figure}
+
+\textbf{Table 4. Post-2022 extended and external model comparison}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2368}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2368}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2368}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dataset}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Pinball loss}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Coverage}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+NBS continuation & Static empirical q90 & 5.582 & 70.2\% \\
+NBS continuation & Fixed-persistence gate & 4.218 & 85.7\% \\
+NBS continuation & Global conformal (12m) & 5.052 & 72.6\% \\
+NBS continuation & Pure hierarchical conformal & 4.481 & 73.4\% \\
+NBS continuation & Ungated expert mixture & 4.459 & 77.9\% \\
+NBS continuation & Meta-controller & 4.206 & 82.9\% \\
+WFP external panel & Static empirical q90 & 6.679 & 85.0\% \\
+WFP external panel & Fixed-persistence gate & 6.494 & 86.6\% \\
+WFP external panel & Global conformal (12m) & 6.340 & 89.2\% \\
+WFP external panel & Pure hierarchical conformal & 6.397 & 85.5\% \\
+WFP external panel & Ungated expert mixture & 6.089 & 88.4\% \\
+WFP external panel & Meta-controller & 6.111 & 88.3\% \\
+\end{longtable}
+
+Notes: The primary controller is the stress-override inertial expert
+mixture selected jointly on the 2022 validation objective. The ungated
+mixture has slightly lower WFP loss but is materially weaker in the NBS
+continuation.
+
+In the NBS continuation, the meta-controller reduces pooled pinball loss
+from 5.582 for the static q90 to 4.206 and closes 74.5\% of the
+equal-month gap between the static forecast and the monthly hindsight
+oracle. Its coverage is 82.9\%, substantially improved but still below
+the nominal 90\%. The fixed-persistence gate is nearly as accurate in
+pooled loss (4.218) and has higher coverage (85.7\%).
+
+In the external WFP panel, the controller reduces loss from 6.679 to
+6.111 and closes 67.2\% of the static-to-oracle gap. Coverage increases
+from 85.0\% to 88.3\%. Global conformal calibration attains the best
+individual-expert coverage (89.2\%) and loss 6.340. The ungated mixture
+has slightly lower pooled WFP loss than the primary controller, but the
+stress-override specification is the one selected jointly across both
+sources using the frozen validation objective.
+
+\subsection{5.3 Bootstrap comparisons and statistical
+interpretation}\label{bootstrap-comparisons-and-statistical-interpretation}
+
+\textbf{Table 5. Equal-month bootstrap comparisons for the
+meta-controller}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1948}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1948}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1948}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1948}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1948}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dataset}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Baseline}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Mean loss difference}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{95\% interval}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{p-value}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+NBS & Static q90 & -1.366 & {[}-3.000, -0.027{]} & 0.045 \\
+NBS & Fixed gate & -0.012 & {[}-0.131, 0.133{]} & 0.810 \\
+WFP & Static q90 & -0.633 & {[}-0.957, -0.327{]} & 0.000 \\
+WFP & Global conformal & -0.166 & {[}-0.474, 0.074{]} & 0.201 \\
+\end{longtable}
+
+Notes: Negative differences favour the meta-controller. The bootstrap
+resamples forecast-origin months and is descriptive because the
+controller architecture was motivated after earlier examination of the
+same post-2022 period.
+
+The bootstrap rejects equal performance against the static forecast in
+both datasets: the NBS 95\% interval is {[}-3.000, -0.027{]} with
+\(p\approx 0.045\), while the WFP interval is {[}-0.957, -0.327{]} with
+p\textless0.001. In contrast, the interval against the best expert
+includes zero in both datasets. The controller is therefore meaningfully
+better than remaining static, but the data do not establish confirmatory
+superiority over the strongest individual adaptive rule.
+
+\subsection{5.4 Regime-specific performance and recovery
+failure}\label{regime-specific-performance-and-recovery-failure}
+
+\textbf{Table 6. NBS performance across break and recovery periods}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2432}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2432}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2432}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2432}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Period}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Model}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Pinball loss}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Coverage}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Jan 2023-Jan 2024 & Static & 9.494 & 48.7\% \\
+Jan 2023-Jan 2024 & Fixed gate & 6.000 & 72.4\% \\
+Jan 2023-Jan 2024 & Meta-controller & 6.161 & 66.6\% \\
+Feb-Dec 2024 & Static & 3.619 & 70.5\% \\
+Feb-Dec 2024 & Fixed gate & 3.392 & 97.4\% \\
+Feb-Dec 2024 & Meta-controller & 3.259 & 97.4\% \\
+2025 & Static & 1.469 & 96.9\% \\
+2025 & Fixed gate & 2.466 & 99.1\% \\
+2025 & Meta-controller & 2.276 & 99.1\% \\
+2026 available origins & Static & 0.922 & 92.9\% \\
+2026 available origins & Fixed gate & 0.922 & 92.9\% \\
+2026 available origins & Meta-controller & 0.778 & 92.9\% \\
+\end{longtable}
+
+Notes: The 2026 extension contains only one usable forecast-origin month
+and should not be interpreted as a stable annual comparison.
+
+During January 2023-January 2024, the static NBS loss is 9.494, compared
+with 6.000 for the fixed gate and 6.161 for the controller. The
+controller is not the best model during the most acute break because its
+mixture retains weight on weaker experts. During February-December 2024
+it improves to 3.259, modestly below the static loss of 3.619.
+
+The main recovery failure appears in 2025. The static forecast records
+loss 1.469, whereas the controller records 2.276 and the fixed gate
+2.466. Coverage near 99\% reveals overconservatism rather than improved
+risk control. The inherited six-month stress persistence remains active
+after the tail level has normalised. This is the clearest reason not to
+claim universal superiority.
+
+\subsection{5.5 Dynamic regret}\label{dynamic-regret}
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig4_nbs_cumulative_regret.pdf}
+\caption{Cumulative equal-month regret relative to the monthly hindsight
+oracle, NBS continuation.}\label{fig:figure-4}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig5_wfp_cumulative_regret.pdf}
+\caption{Cumulative equal-month regret relative to the monthly hindsight
+oracle, WFP market panel.}\label{fig:figure-5}
+\end{figure}
+
+The cumulative-regret paths show that the controller's principal gain is
+avoidance of the static model's large 2023 error accumulation. In NBS,
+its equal-month dynamic regret is 0.468 compared with 1.834 for the
+static forecast and 0.481 for the fixed gate. In WFP, the corresponding
+values are 0.309, 0.942, and 0.475 for global conformal. The controller
+smooths expert-specific failures, but it does not track the monthly
+oracle closely enough to eliminate regret.
+
+\subsection{5.6 Conditional coverage}\label{conditional-coverage}
+
+Pooled performance conceals subgroup failures. In the NBS continuation,
+the controller's worst commodity coverage is 65.2\% for Irish potato. In
+WFP, the worst commodity coverage is 80.9\% for tomatoes and the worst
+market coverage is 83.6\% for Monday market. Global conformal provides
+stronger WFP mean commodity coverage, while the fixed gate provides
+stronger NBS mean commodity coverage. These results rule out a claim of
+conditional calibration and show why pooled q90 coverage cannot be the
+only diagnostic.
+
+\subsection{5.7 Simulation evidence}\label{simulation-evidence}
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig6_simulation_regret.pdf}
+\caption{Mean dynamic regret in delayed-feedback structural-break
+simulations.}\label{fig:figure-6}
+\end{figure}
+
+\textbf{Table 7. Lowest-loss method by simulated scenario}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2368}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2632}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2368}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2368}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Scenario}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Lowest-loss method}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Mean pinball}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Coverage}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Abrupt Permanent & Pure hierarchical conformal & 0.884 & 79.9\% \\
+Gradual Break Recovery & Pure hierarchical conformal & 0.832 & 79.9\% \\
+Heterogeneous Subgroups & Pure hierarchical conformal & 1.039 &
+86.8\% \\
+No Break & Static & 0.534 & 90.1\% \\
+Temporary Recovery & Pure hierarchical conformal & 0.990 & 82.1\% \\
+Volatility Break Recovery & Fixed-persistence gate & 0.759 & 88.6\% \\
+\end{longtable}
+
+Notes: Each scenario contains 60 replications, 60 series in six groups,
+96 months, Student-t disturbances, and a three-month feedback delay.
+Scenario winners are descriptive features of the specified
+data-generating processes, not universal optimality statements.
+
+No method dominates. The static quantile is best without a break.
+Hierarchical calibration is best under permanent, gradual, temporary,
+and subgroup-specific level shifts, although its coverage is often below
+90\%. The fixed gate is best under the volatility-break recovery
+scenario. The controller is a compromise forecast with lower regret than
+static forecasting in most changing environments but is not the
+lowest-loss method in any primary simulation scenario.

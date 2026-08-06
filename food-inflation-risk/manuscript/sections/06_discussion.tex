@@ -1,0 +1,92 @@
+\section{Discussion}\label{discussion}
+
+\subsection{6.1 Interpretation}\label{interpretation}
+
+The central empirical fact is a panel-wide tail shift. A static model
+can preserve reasonable rankings across items and locations while its
+absolute q90 level becomes severely understated. This explains why a
+simple common-shift adjustment can outperform a more flexible tree model
+after a regime change. Tree ensembles interpolate historical outcomes
+effectively but do not automatically extrapolate a new common tail level
+beyond the training regime.
+
+Different adaptations solve different problems. The fixed gate reacts
+rapidly to a common shock; global conformal calibration targets overall
+residual quantiles; hierarchy addresses cross-sectional heterogeneity;
+and the static expert protects against needless adaptation in stable
+periods. The controller reduces regret by diversifying these failure
+modes. Its limited gain over the best expert reflects the small number
+of monthly observations and the difficulty of identifying the current
+regime before delayed losses mature.
+
+For operational use, the model should be treated as a risk-monitoring
+device. An elevated q90 forecast signals that a large three-month price
+increase is plausible relative to the historical distribution. It does
+not identify the causal source of the shock, and it should not replace
+item-specific market intelligence. Forecasts should be accompanied by
+coverage diagnostics, model weights, and an explicit recovery flag.
+
+\subsection{6.2 Policy and risk-management
+relevance}\label{policy-and-risk-management-relevance}
+
+The framework is relevant to food-security monitoring because it
+highlights the upper tail rather than only the mean. A central agency
+could use it to identify months in which procurement budgets,
+cash-transfer adequacy, or household food-access risks are unusually
+exposed. Insurers, banks, and firms could use the same logic for stress
+testing inventories, working capital, and commodity-linked liabilities.
+
+The delayed-feedback design is also broadly relevant. Many risk systems
+observe outcomes after a reporting lag, settlement period, or forecast
+horizon. A method that quietly uses not-yet-matured errors will appear
+more responsive than a deployable model. Enforcing maturation dates is
+therefore a substantive methodological requirement, not merely a coding
+detail.
+
+\subsection{6.3 Limitations}\label{limitations}
+
+\begin{itemize}
+\item
+  The Phase 10 post-2022 evaluation is exploratory because the
+  architecture was motivated after earlier models had already been
+  examined on the same period.
+\item
+  The NBS continuation is a same-source national-item validation rather
+  than a replication of the original state-commodity panel.
+\item
+  The WFP external sample is concentrated in Borno and Yobe and is not
+  nationally representative.
+\item
+  Exact publication and release lags are not reconstructed; the design
+  assumes month-t predictors are available at issuance.
+\item
+  Several NBS item definitions change in later publications, and only
+  sufficiently comparable series are retained.
+\item
+  The stress detector is standardised separately within each source and
+  does not transport as a source-invariant economic index.
+\item
+  The convex combination of q90 forecasts is an operational tail
+  forecast, not a conformal set with distribution-free conditional
+  coverage.
+\item
+  Month-block bootstrap intervals preserve common within-month shocks
+  but do not eliminate all serial dependence.
+\item
+  The monthly oracle is infeasible and is used only as a regret
+  benchmark.
+\item
+  Simulation conclusions depend on the specified heavy-tailed panel
+  processes and do not constitute a universal regret theorem.
+\end{itemize}
+
+\subsection{6.4 What would constitute confirmatory
+evidence?}\label{what-would-constitute-confirmatory-evidence}
+
+The controller should now be frozen. Confirmatory evidence requires an
+untouched country or a future Nigerian evaluation period that was not
+used to motivate, select, or refine any component. The primary outcome,
+exclusions, mapping rules, target horizon, feedback delay, expert
+definitions, controller parameters, bootstrap procedure, and superiority
+criterion must be specified before outcomes are inspected. A separate
+frozen protocol accompanies this manuscript.

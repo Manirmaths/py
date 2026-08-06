@@ -1,0 +1,94 @@
+name: Render food-inflation manuscript
+
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'food-inflation-risk/**'
+      - '.github/workflows/render-manuscript.yml'
+  push:
+    branches: [master]
+    paths:
+      - 'food-inflation-risk/**'
+      - '.github/workflows/render-manuscript.yml'
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: food-inflation-risk
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          working-directory: food-inflation-risk
+          extra-packages: any::ggplot2, any::dplyr, any::readr, any::tidyr, any::scales, any::lubridate
+          needs: check
+
+      - name: Generate figures with ggplot2
+        run: |
+          Rscript code/R/make_figures.R
+          Rscript code/R/make_research_design.R
+          ls -lh manuscript/figures
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            latexmk \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            lmodern
+
+      - name: Compile manuscript
+        run: |
+          cd manuscript
+          if ! latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex; then
+            echo '=== LaTeX errors ==='
+            grep -n '^!' main.log | tail -n 30 || true
+            echo '=== main.log tail ==='
+            tail -n 220 main.log || true
+            exit 1
+          fi
+
+      - name: Compile frozen protocol
+        run: |
+          cd protocol
+          if ! latexmk -pdf -interaction=nonstopmode -halt-on-error protocol.tex; then
+            echo '=== LaTeX errors ==='
+            grep -n '^!' protocol.log | tail -n 30 || true
+            echo '=== protocol.log tail ==='
+            tail -n 220 protocol.log || true
+            exit 1
+          fi
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: latex-build-logs
+          if-no-files-found: warn
+          path: |
+            food-inflation-risk/manuscript/main.log
+            food-inflation-risk/manuscript/main.fls
+            food-inflation-risk/protocol/protocol.log
+            food-inflation-risk/protocol/protocol.fls
+
+      - name: Upload rendered manuscript
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: food-inflation-risk-manuscript
+          path: |
+            food-inflation-risk/manuscript/main.pdf
+            food-inflation-risk/protocol/protocol.pdf
+            food-inflation-risk/manuscript/figures/*.pdf
+            food-inflation-risk/manuscript/figures/*.png

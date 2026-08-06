@@ -1,0 +1,181 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  11pt,
+  a4paper,
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{%
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath}
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{%
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{%
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{\KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen}
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+\let\@cite@ofmt\@firstofone
+\def\@biblabel#1{}
+\def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2]
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,longtable,array}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{enumitem}
+\setstretch{1.15}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{1.5em}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{float}
+\usepackage{xcolor}
+\definecolor{linkblue}{RGB}{31,78,121}
+\ifLuaTeX
+  \usepackage{selnolig}
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Food Inflation-at-Risk under Delayed Feedback: Regime-Aware Expert Aggregation, Structural Breaks, and External Validation},
+  pdfauthor={Maniru Ibrahim},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX}}
+
+\title{Food Inflation-at-Risk under Delayed Feedback: Regime-Aware
+Expert Aggregation, Structural Breaks, and External Validation}
+\author{Maniru Ibrahim\thanks{Department of Mathematics and Statistics,
+University of Limerick, Ireland. Corresponding-author details and
+co-author list to be confirmed.}}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Food-price monitoring systems usually report conditional means or point
+forecasts, even though policy and risk-management decisions are often
+driven by the probability of unusually large price increases. This study
+defines three-month Food Inflation-at-Risk as the conditional 90th
+percentile of forward log food-price inflation and examines how it can
+be forecast when the data-generating process changes abruptly and
+realised forecast errors arrive with a three-month delay. The empirical
+design combines a National Bureau of Statistics development panel
+containing 136,826 state-commodity observations for 37 states/FCT and 43
+food items, a same-source national continuation through April 2026, and
+an external World Food Programme market panel containing 366
+market-commodity-unit series. Four leakage-safe expert forecasts are
+constructed: a static empirical quantile, a fixed-persistence
+exponentially weighted adjustment, a rolling global conformal
+calibration, and a partially pooled hierarchical conformal calibration.
+A regime-aware meta-controller combines them using 2021 regime priors,
+hyperparameters selected in 2022, three-month-delayed expert losses,
+softmax weighting, and a partial stress override. On the original 2023
+structural-break test, stress-gated recalibration reduced pinball loss
+by 38.1\% relative to the static quantile. In the extended backtest, the
+meta-controller reduced pooled pinball loss from 5.582 to 4.206 in the
+NBS continuation and from 6.679 to 6.111 in the external WFP panel.
+Bootstrap comparisons reject equality against the static forecast but
+not against the best individual expert. Coverage improved but remained
+below the nominal 90\% in the NBS continuation, while the controller
+overforecast during the 2025 recovery. The evidence supports
+regime-aware forecast aggregation under delayed feedback, but not a
+universally optimal adaptive rule. A genuinely untouched country or
+future period is required for confirmatory validation.
+\end{abstract}
+
+\begin{center}
+\emph{Draft manuscript -- co-authors, affiliations, funding statement, and corresponding-author details to be confirmed}
+\end{center}
+
+\noindent\textbf{Keywords:} food inflation; inflation-at-risk; quantile
+forecasting; structural breaks; conformal calibration; delayed feedback;
+expert aggregation; Nigeria
+
+\noindent\textbf{JEL classification:} C22; C53; E31; Q11
+
+\input{sections/01_introduction.tex}
+\input{sections/02_literature.tex}
+\input{sections/03_data.tex}
+\input{sections/04_methods.tex}
+\input{sections/05_results.tex}
+\input{sections/06_discussion.tex}
+\input{sections/07_conclusion.tex}
+\input{sections/08_declarations.tex}
+\input{sections/09_appendix_controller.tex}
+\input{sections/10_reproducibility.tex}
+\input{sections/11_references.tex}
+\end{document}

@@ -1,0 +1,263 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[11pt,a4paper]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp}
+\else
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{\usepackage[]{microtype}\UseMicrotypeSet[protrusion]{basicmath}}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{\IfFileExists{parskip.sty}{\usepackage{parskip}}{\setlength{\parindent}{0pt}\setlength{\parskip}{6pt plus 2pt minus 1pt}}}{\KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs,array,calc,etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen}
+\usepackage{microtype,setspace}
+\setstretch{1.15}
+\ifLuaTeX\usepackage{selnolig}\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{}
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Frozen External-Validation Protocol for Food Inflation-at-Risk},
+  pdfauthor={Maniru Ibrahim},
+  hidelinks,
+  pdfcreator={LaTeX}}
+
+\title{Frozen External-Validation Protocol for Food Inflation-at-Risk}
+\author{Maniru Ibrahim\thanks{Department of Mathematics and Statistics,
+University of Limerick, Ireland.}}
+\date{Protocol version 1.0 -- 6 August 2026}
+
+\begin{document}
+\maketitle
+
+\section{Objective and status}\label{objective-and-status}
+
+The objective is to test whether the frozen Phase 10 regime-aware
+meta-controller improves three-month-ahead q90 food-inflation forecasts
+in a genuinely untouched setting. The current Nigerian post-2022
+evidence is exploratory because the controller architecture was
+motivated by earlier analyses of the same period. The confirmatory
+evaluation must therefore use either (a) a country not examined during
+model development or (b) a future Nigerian period whose outcomes were
+unavailable when this protocol was frozen.
+
+\section{Primary hypothesis}\label{primary-hypothesis}
+
+Primary null hypothesis: the equal-month mean q90 pinball loss of the
+frozen meta-controller is not lower than that of the static empirical
+q90 benchmark.
+
+\[
+H_0:\;\mathbb{E}_m\left[L_{0.90}(\mathrm{meta})-L_{0.90}(\mathrm{static})\right]\geq 0.
+\]
+
+Primary alternative: the equal-month mean difference is negative. The
+confirmatory claim succeeds only if the predeclared one-sided
+month-block bootstrap p-value is below 0.05 and the controller does not
+reduce pooled coverage below the static benchmark by more than two
+percentage points.
+
+\section{Secondary hypotheses}\label{secondary-hypotheses}
+
+\begin{itemize}
+\item The controller has lower equal-month pinball loss than the best single expert selected using only the pre-test calibration period.
+\item The controller closes at least 25\% of the static-to-monthly-oracle loss gap.
+\item Marginal q90 coverage lies between 0.86 and 0.94.
+\item No commodity or market subgroup with at least 30 test forecasts has coverage below 0.75.
+\item The controller does not incur more than six regime switches per 24 forecast-origin months.
+\item The controller performs no worse than static forecasting during the predeclared recovery subperiod.
+\end{itemize}
+
+\section{Eligible validation setting}\label{eligible-validation-setting}
+
+A country-level dataset is eligible only if all of the following conditions are met before model execution:
+
+\begin{itemize}
+\item Monthly retail food prices are available at market, region, or state level for at least 20 commodities.
+\item At least 48 months precede the confirmatory test period, including a minimum 24-month calibration period.
+\item At least 18 forecast-origin months are available in the confirmatory test period.
+\item The exact month t+3 observation is available for at least 70\% of otherwise eligible series-months.
+\item Prices are measured in a consistent currency/unit or can be harmonised using rules defined without test outcomes.
+\item The dataset was not used in Phases 1--10 and was not inspected for controller performance before registration.
+\item The source permits redistribution of code and derived, non-confidential results.
+\end{itemize}
+
+Country selection must be based on data availability and documentation,
+not on whether a visible inflation spike appears favourable to adaptive
+forecasting. The selection log must record all candidate countries
+considered and the reason for inclusion or exclusion.
+
+\section{Frozen outcome and information timing}\label{frozen-outcome-and-information-timing}
+
+\[
+y_{ist}^{(3)}=100\left[\log(P_{is,t+3})-\log(P_{ist})\right].
+\]
+
+The target quantile is 0.90. Forecasts are issued after month-t prices
+and permitted predictors are observed. At origin t, residual-based
+updates may use only forecast origins t-3 or earlier. No interpolation
+across a missing target month is allowed. Exact release lags must be
+documented; if release dates are unavailable, the analysis must state
+the same pseudo-real-time assumption used in the Nigerian study.
+
+\section{Frozen expert definitions}\label{frozen-expert-definitions}
+
+\textbf{Table P1. Experts that must be implemented without modification}
+
+\begin{longtable}[]{@{}p{0.46\columnwidth}p{0.46\columnwidth}@{}}
+\toprule
+\textbf{Expert} & \textbf{Frozen specification} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Static empirical q90 & Historical q90 estimated through the end of the base-training period. \\
+Fixed-persistence gate & Food-stress threshold at the 95th calibration percentile; six-month persistence; EWMA residual-shift rate 0.20. \\
+Global conformal & Frozen base q90 plus the q90 of matured residuals in the preceding 12 origin months. \\
+Pure hierarchical conformal & Six-month residual window; prior strength \(\kappa=50\); available country-specific commodity and location hierarchy. \\
+\end{longtable}
+
+Only label mapping and hierarchy names may change to match the new dataset. Numeric parameters and information timing may not be tuned.
+
+\section{Frozen meta-controller}\label{frozen-meta-controller}
+
+\begin{itemize}
+\item Regime-prior year/window: the first 12 months after the frozen base model begins producing honest residuals.
+\item Hyperparameter-validation window: the following 12 months.
+\item Delayed-loss EWMA rate: 0.50.
+\item Regime-prior weight \(\gamma\): 0.75; delayed-loss weight: 0.25.
+\item Softmax intensity \(\eta\): 10.
+\item Weight inertia: 1.00.
+\item Stress override: when the fixed gate is active, assign 0.75 weight to the fixed-gate expert and distribute the remaining 0.25 according to the loss-aware mixture.
+\item Regime cells: stress score below 0.50, 0.50--0.75, or at least 0.75, crossed with a high-heterogeneity indicator based on the 75th percentile of matured residual IQR in the regime-prior year.
+\item Cell prior shrinkage strength: 3 months toward the global regime-prior expert-loss vector.
+\end{itemize}
+
+\section{Base model transport}\label{base-model-transport}
+
+The quantile LightGBM architecture is frozen: \(\alpha=0.90\), learning
+rate 0.05, 31 leaves, minimum 250 observations per leaf, feature
+fraction 0.85, bagging fraction 0.85, bagging frequency 1, L2 penalty 2,
+and 120 boosting rounds. The feature set may use only variables with
+direct analogues available before the test period: time index, seasonal
+sine/cosine, current and lagged monthly price changes, backward
+three-month inflation, rolling means and volatility, and cross-sectional
+food-price summaries. Dataset-specific categorical identifiers may
+replace Nigerian entity labels. New macroeconomic features may not be
+introduced in the confirmatory primary analysis.
+
+\section{Data cleaning and exclusions}\label{data-cleaning-and-exclusions}
+
+\begin{itemize}
+\item All item, market, region, currency, and unit harmonisation rules must be written before test outcomes are calculated.
+\item Duplicate series-month records must be resolved using source documentation or a deterministic aggregation rule.
+\item Non-positive prices are excluded before log transformation.
+\item The primary analysis does not winsorise outcomes. A sensitivity analysis may clip outcomes using 0.5/99.5 percentiles estimated from the base-training period only.
+\item A series must have at least 18 base/calibration targets, at least two validation targets, and at least six confirmatory-test targets; a stricter threshold may be used only if declared before test outcomes are inspected.
+\item No series is excluded because its confirmatory result is extreme or worsens model performance.
+\end{itemize}
+
+\section{Primary and secondary metrics}\label{primary-and-secondary-metrics}
+
+\textbf{Table P2. Confirmatory evaluation metrics}
+
+\begin{longtable}[]{@{}p{0.25\columnwidth}p{0.33\columnwidth}p{0.33\columnwidth}@{}}
+\toprule
+\textbf{Class} & \textbf{Metric} & \textbf{Aggregation} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Primary & q90 pinball-loss difference: meta minus static & Equal weight to each forecast-origin month \\
+Co-primary safeguard & Marginal q90 coverage & Pooled rows and equal-month summary \\
+Secondary & Loss difference versus best calibration-selected expert & Equal-month \\
+Secondary & Static-to-oracle gap closed & Equal-month \\
+Secondary & Commodity/location coverage dispersion & Eligible subgroups \\
+Secondary & Regime switches and expert-weight turnover & Monthly \\
+Secondary & Break and recovery subperiod performance & Predeclared dates or external event definition \\
+\end{longtable}
+
+\section{Statistical analysis}\label{statistical-analysis}
+
+The primary interval and p-value use a month-block bootstrap with 10,000
+resamples of forecast-origin months. All rows within a sampled month
+remain together. The primary test is one-sided at 5\%. A two-sided 95\%
+interval is also reported. Secondary comparisons are reported with Holm
+adjustment within the family of expert comparisons. No subgroup p-value
+is used to redefine the primary sample.
+
+\section{Superiority, non-inferiority, and failure rules}\label{superiority-non-inferiority-and-failure-rules}
+
+\begin{itemize}
+\item Confirmatory superiority versus static succeeds only when the primary one-sided bootstrap p\textless0.05, the estimated loss difference is negative, and coverage is no more than two percentage points below static coverage.
+\item Superiority versus the best expert is a secondary claim and requires Holm-adjusted p\textless0.05.
+\item If the controller improves loss but fails the coverage safeguard, the conclusion is ``sharper but under-calibrated,'' not superior.
+\item If the controller is worse during the predeclared recovery subperiod, that failure must appear in the abstract and conclusion.
+\item If fewer than 18 test-origin months remain after deterministic exclusions, the analysis is descriptive and cannot be labelled confirmatory.
+\item No parameter may be changed after viewing confirmatory outcomes. Any altered model is a new exploratory analysis and must be labelled separately.
+\end{itemize}
+
+\section{Reporting and reproducibility}\label{reporting-and-reproducibility}
+
+\begin{itemize}
+\item Publish a candidate-country screening log.
+\item Archive raw-data download dates, source checksums where permitted, harmonisation maps, and exclusion logs.
+\item Release code that reproduces every table and figure from raw or legally redistributable inputs.
+\item Report all four expert results, both controller variants, coverage, subgroup failures, switches, and recovery performance.
+\item Report the untouched-test status and any deviations from this protocol in a dedicated deviations table.
+\item Create a versioned public repository and persistent DOI before manuscript submission.
+\end{itemize}
+
+\section{Protocol deviations table}\label{protocol-deviations-table}
+
+\textbf{Table P3. To be completed after the confirmatory analysis}
+
+\begin{longtable}[]{@{}p{0.17\columnwidth}p{0.17\columnwidth}p{0.22\columnwidth}p{0.17\columnwidth}p{0.17\columnwidth}@{}}
+\toprule
+\textbf{Protocol item} & \textbf{Planned rule} & \textbf{Actual implementation} & \textbf{Reason for deviation} & \textbf{Impact assessment} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Country selection & Untouched eligible country or future period & & & \\
+Series eligibility & Predeclared minimum history & & & \\
+Outcome and horizon & q90, three-month forward log inflation & & & \\
+Expert parameters & Frozen Phase 10 values & & & \\
+Controller parameters & Frozen Phase 10 values & & & \\
+Bootstrap & 10,000 month-block resamples & & & \\
+Primary claim rule & Loss superiority plus coverage safeguard & & & \\
+\end{longtable}
+
+\section{Sign-off}\label{sign-off}
+
+Protocol author: Maniru Ibrahim
+
+Date frozen: 6 August 2026
+
+Repository commit/hash: To be inserted before registration.
+
+Registration platform and identifier: To be completed before downloading
+or inspecting confirmatory outcomes.
+
+\end{document}

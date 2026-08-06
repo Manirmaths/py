@@ -1,0 +1,70 @@
+\section{Introduction}\label{introduction}
+
+Food inflation is not only a question of the expected change in a price
+index. Households, governments, humanitarian agencies, and firms are
+also exposed to the upper tail of future price changes: the possibility
+that food prices rise much faster than their central forecast. This
+distinction is especially important in economies where household
+expenditure is concentrated on food and where exchange-rate, fuel-price,
+transport, security, and supply shocks can cause rapid changes in retail
+prices. A distributional forecast can therefore be more
+decision-relevant than a point forecast, because it directly measures
+the severity of plausible adverse outcomes.
+
+The inflation-at-risk literature formalises this idea by modelling
+conditional quantiles of future inflation rather than only its
+conditional mean (\citeproc{ref-lopezsalido2024inflation}{López-Salido
+and Loria 2024}; \citeproc{ref-banerjee2024inflation}{Banerjee et al.
+2024}). Existing applications largely concern aggregate consumer-price
+inflation in advanced and emerging economies. Food prices create a
+harder forecasting problem. They are highly disaggregated, seasonal,
+heterogeneous across commodities and locations, and vulnerable to
+measurement noise. More importantly, the upper tail may shift quickly
+after a macroeconomic or supply-chain regime change. A model estimated
+in a stable historical period can be well calibrated in ordinary months
+and still fail severely when a common upward shift moves most
+state-commodity observations beyond the training distribution.
+
+This study examines that failure mode in Nigeria. The empirical setting
+contains a major distribution shift during 2023, when exchange-rate and
+fuel-price conditions changed sharply and food-price inflation became
+persistently elevated. The forecasting problem is operationally
+constrained: the target is three-month forward inflation, so the error
+attached to a forecast issued in month t is not fully observable until
+t+3. An adaptive model must therefore respond to an ongoing break using
+current covariates and stale forecast errors. This delayed-feedback
+structure differentiates the problem from conventional rolling-window
+evaluation.
+
+The paper makes four contributions. First, it constructs a granular Food
+Inflation-at-Risk target from a panel of 37 Nigerian states/FCT and 43
+commodities and documents the collapse of static upper-tail calibration
+during the 2023 regime change. Second, it evaluates several transparent
+delayed-feedback adaptations: exponentially weighted common-shift
+adjustment, rolling conformal calibration, and hierarchical partial
+pooling across commodities and markets. Third, it develops an inertial
+regime-aware controller that combines these expert forecasts using
+observable stress diagnostics and only forecast losses that have matured
+after the three-month target horizon. Fourth, it evaluates temporal
+persistence, cross-source transport, subgroup calibration, and simulated
+structural breaks rather than relying on one favourable test period.
+
+The headline result is deliberately restrained. The meta-controller has
+lower pooled post-2022 pinball loss than every individual expert in both
+the same-source NBS continuation and the external WFP market panel. It
+reduces loss significantly relative to a static quantile, but its
+advantage over the best expert is not statistically decisive. It also
+inherits a recovery problem: the stress override remains too
+conservative during the 2025 NBS extension. The evidence therefore
+supports regime-aware forecast combination under delayed feedback, not a
+claim that the proposed controller is universally superior.
+
+The remainder of the paper is organised as follows. Section 2 positions
+the study within the inflation-at-risk, conformal prediction, and online
+expert-aggregation literatures. Section 3 describes the data, outcome,
+chronological splits, and information constraints. Section 4 defines the
+expert forecasts and meta-controller. Section 5 reports the
+development-panel failure, extended and external validation, regret
+analysis, subgroup coverage, and simulations. Section 6 discusses
+interpretation and limitations. Section 7 concludes and states the
+frozen confirmatory-validation requirement.

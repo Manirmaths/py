@@ -1,0 +1,116 @@
+dataset,date,model,dynamic_regret
+NBS national continuation,2023-01-01,Static empirical q90,0.076069111667952
+NBS national continuation,2023-01-01,Fixed-persistence gate,0.0021840873488091
+NBS national continuation,2023-01-01,Global conformal (12m),0.0529179783524661
+NBS national continuation,2023-01-01,Pure hierarchical conformal,0.0
+NBS national continuation,2023-01-01,Stress-override inertial expert mixture,0.0111119946961721
+NBS national continuation,2023-02-01,Static empirical q90,0.088961688068435
+NBS national continuation,2023-02-01,Fixed-persistence gate,0.088961688068435
+NBS national continuation,2023-02-01,Global conformal (12m),0.03590182559752
+NBS national continuation,2023-02-01,Pure hierarchical conformal,0.0
+NBS national continuation,2023-02-01,Stress-override inertial expert mixture,0.0123228179148703
+NBS national continuation,2023-03-01,Static empirical q90,0.0
+NBS national continuation,2023-03-01,Fixed-persistence gate,0.0
+NBS national continuation,2023-03-01,Global conformal (12m),0.0073133115965652
+NBS national continuation,2023-03-01,Pure hierarchical conformal,0.0017174351787064
+NBS national continuation,2023-03-01,Stress-override inertial expert mixture,-0.1986749931839753
+NBS national continuation,2023-04-01,Static empirical q90,0.0
+NBS national continuation,2023-04-01,Fixed-persistence gate,0.0
+NBS national continuation,2023-04-01,Global conformal (12m),0.9329315314684976
+NBS national continuation,2023-04-01,Pure hierarchical conformal,1.6262262633611106
+NBS national continuation,2023-04-01,Stress-override inertial expert mixture,0.1825174007982566
+NBS national continuation,2023-05-01,Static empirical q90,0.0
+NBS national continuation,2023-05-01,Fixed-persistence gate,0.0
+NBS national continuation,2023-05-01,Global conformal (12m),0.8942391572809214
+NBS national continuation,2023-05-01,Pure hierarchical conformal,1.364735239394001
+NBS national continuation,2023-05-01,Stress-override inertial expert mixture,0.4849667299412807
+NBS national continuation,2023-06-01,Static empirical q90,0.0
+NBS national continuation,2023-06-01,Fixed-persistence gate,0.1686532156906768
+NBS national continuation,2023-06-01,Global conformal (12m),0.0072969151462416
+NBS national continuation,2023-06-01,Pure hierarchical conformal,0.0207491737967187
+NBS national continuation,2023-06-01,Stress-override inertial expert mixture,0.0136092109935468
+NBS national continuation,2023-07-01,Static empirical q90,0.7182509907143504
+NBS national continuation,2023-07-01,Fixed-persistence gate,0.0
+NBS national continuation,2023-07-01,Global conformal (12m),0.4424226937730506
+NBS national continuation,2023-07-01,Pure hierarchical conformal,0.1104129695032951
+NBS national continuation,2023-07-01,Stress-override inertial expert mixture,0.0560178492513472
+NBS national continuation,2023-08-01,Static empirical q90,9.350902961569794
+NBS national continuation,2023-08-01,Fixed-persistence gate,0.0
+NBS national continuation,2023-08-01,Global conformal (12m),7.62437347143058
+NBS national continuation,2023-08-01,Pure hierarchical conformal,6.148788361659641
+NBS national continuation,2023-08-01,Stress-override inertial expert mixture,1.05197965752037
+NBS national continuation,2023-09-01,Static empirical q90,10.5460201443038
+NBS national continuation,2023-09-01,Fixed-persistence gate,0.0
+NBS national continuation,2023-09-01,Global conformal (12m),6.846527173815917
+NBS national continuation,2023-09-01,Pure hierarchical conformal,2.8735277192099105
+NBS national continuation,2023-09-01,Stress-override inertial expert mixture,0.5020564924777577
+NBS national continuation,2023-10-01,Static empirical q90,8.27794388704157
+NBS national continuation,2023-10-01,Fixed-persistence gate,0.0
+NBS national continuation,2023-10-01,Global conformal (12m),3.74808911450676
+NBS national continuation,2023-10-01,Pure hierarchical conformal,0.5363854328866549
+NBS national continuation,2023-10-01,Stress-override inertial expert mixture,0.3172751668029507
+NBS national continuation,2023-11-01,Static empirical q90,9.877319358396749
+NBS national continuation,2023-11-01,Fixed-persistence gate,0.2341617875190229
+NBS national continuation,2023-11-01,Global conformal (12m),2.341623763431973
+NBS national continuation,2023-11-01,Pure hierarchical conformal,0.0
+NBS national continuation,2023-11-01,Stress-override inertial expert mixture,-0.1599299829399565
+NBS national continuation,2024-09-01,Static empirical q90,0.0
+NBS national continuation,2024-09-01,Fixed-persistence gate,0.5936108388994814
+NBS national continuation,2024-09-01,Global conformal (12m),0.3172326931899052
+NBS national continuation,2024-09-01,Pure hierarchical conformal,0.0139400174507575
+NBS national continuation,2024-09-01,Stress-override inertial expert mixture,0.4881788323231397
+NBS national continuation,2024-10-01,Static empirical q90,0.3829167135011411
+NBS national continuation,2024-10-01,Fixed-persistence gate,0.2760908648420588
+NBS national continuation,2024-10-01,Global conformal (12m),0.0
+NBS national continuation,2024-10-01,Pure hierarchical conformal,1.133701109093734
+NBS national continuation,2024-10-01,Stress-override inertial expert mixture,0.1062666924838655
+NBS national continuation,2024-12-01,Static empirical q90,1.3676028920458765
+NBS national continuation,2024-12-01,Fixed-persistence gate,0.2002304864022583
+NBS national continuation,2024-12-01,Global conformal (12m),0.0
+NBS national continuation,2024-12-01,Pure hierarchical conformal,0.7067060979051929
+NBS national continuation,2024-12-01,Stress-override inertial expert mixture,0.0766984576461267
+NBS national continuation,2025-01-01,Static empirical q90,0.0
+NBS national continuation,2025-01-01,Fixed-persistence gate,2.1301010420296618
+NBS national continuation,2025-01-01,Global conformal (12m),1.6236486109176955
+NBS national continuation,2025-01-01,Pure hierarchical conformal,1.103146765622708
+NBS national continuation,2025-01-01,Stress-override inertial expert mixture,1.9211270364835376
+NBS national continuation,2025-04-01,Static empirical q90,0.0
+NBS national continuation,2025-04-01,Fixed-persistence gate,1.619864704079164
+NBS national continuation,2025-04-01,Global conformal (12m),1.2103002482632674
+NBS national continuation,2025-04-01,Pure hierarchical conformal,1.135935272850097
+NBS national continuation,2025-04-01,Stress-override inertial expert mixture,1.3588768541627188
+NBS national continuation,2025-07-01,Static empirical q90,0.0578150309262781
+NBS national continuation,2025-07-01,Fixed-persistence gate,1.2805683345211634
+NBS national continuation,2025-07-01,Global conformal (12m),1.0638805188024807
+NBS national continuation,2025-07-01,Pure hierarchical conformal,0.0
+NBS national continuation,2025-07-01,Stress-override inertial expert mixture,1.0292126576510898
+NBS national continuation,2025-08-01,Static empirical q90,0.0
+NBS national continuation,2025-08-01,Fixed-persistence gate,1.343507210772515
+NBS national continuation,2025-08-01,Global conformal (12m),1.1268193950538332
+NBS national continuation,2025-08-01,Pure hierarchical conformal,0.0629388762513525
+NBS national continuation,2025-08-01,Stress-override inertial expert mixture,1.069847599476034
+NBS national continuation,2025-09-01,Static empirical q90,0.0966317468244084
+NBS national continuation,2025-09-01,Fixed-persistence gate,1.2588652799086095
+NBS national continuation,2025-09-01,Global conformal (12m),1.0421774641899284
+NBS national continuation,2025-09-01,Pure hierarchical conformal,0.0
+NBS national continuation,2025-09-01,Stress-override inertial expert mixture,0.9898756072118622
+NBS national continuation,2025-10-01,Static empirical q90,0.2662592862567032
+NBS national continuation,2025-10-01,Fixed-persistence gate,0.7706359167315704
+NBS national continuation,2025-10-01,Global conformal (12m),0.2732789049394031
+NBS national continuation,2025-10-01,Pure hierarchical conformal,0.0
+NBS national continuation,2025-10-01,Stress-override inertial expert mixture,0.6531042025803198
+NBS national continuation,2025-11-01,Static empirical q90,0.3254803135005781
+NBS national continuation,2025-11-01,Fixed-persistence gate,0.3254803135005781
+NBS national continuation,2025-11-01,Global conformal (12m),0.1380002148442756
+NBS national continuation,2025-11-01,Pure hierarchical conformal,0.0
+NBS national continuation,2025-11-01,Stress-override inertial expert mixture,0.2605682743412385
+NBS national continuation,2025-12-01,Static empirical q90,0.4347061083162992
+NBS national continuation,2025-12-01,Fixed-persistence gate,0.4347061083162992
+NBS national continuation,2025-12-01,Global conformal (12m),0.2926254672719818
+NBS national continuation,2025-12-01,Pure hierarchical conformal,0.0
+NBS national continuation,2025-12-01,Stress-override inertial expert mixture,0.3583455601929468
+NBS national continuation,2026-01-01,Static empirical q90,0.3249237046490048
+NBS national continuation,2026-01-01,Fixed-persistence gate,0.3249237046490048
+NBS national continuation,2026-01-01,Global conformal (12m),0.0
+NBS national continuation,2026-01-01,Pure hierarchical conformal,0.2823674647333416
+NBS national continuation,2026-01-01,Stress-override inertial expert mixture,0.1812101678460834

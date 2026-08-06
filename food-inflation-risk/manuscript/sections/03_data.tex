@@ -1,0 +1,124 @@
+\section{Data, target, and evaluation
+design}\label{data-target-and-evaluation-design}
+
+\begin{figure}
+\centering
+\includegraphics{figures/fig1_research_design.pdf}
+\caption{Research design, chronological split, and delayed information
+flow.}\label{fig:figure-1}
+\end{figure}
+
+\subsection{3.1 NBS state-commodity development
+panel}\label{nbs-state-commodity-development-panel}
+
+The development panel contains monthly retail food prices from March
+2017 to April 2024. It covers 37 state units, including the Federal
+Capital Territory, and 43 food items. After harmonisation, the balanced
+key structure contains 136,826 state-item-month observations. NBS
+reports state averages based on field collection across the federation
+and applies internal verification procedures. The modelling panel also
+includes month-t food-price dynamics and selected macroeconomic
+indicators, including premium motor spirit prices, exchange rates, and
+transport fares.
+
+Several isolated price records display implausible one-month unit or
+decimal spikes. The primary upper-tail target remains quantile-based,
+which is less sensitive than squared-error objectives, and a
+training-based 0.5/99.5 percentile winsorisation is reported as a
+robustness check. No outlier rule is estimated using the test period.
+
+\subsection{3.2 Same-source NBS national
+continuation}\label{same-source-nbs-national-continuation}
+
+For temporal persistence, later NBS releases were harmonised to 28
+national item series through April 2026. Product-unit matches were
+retained only when the old and new labels were sufficiently comparable.
+Exact calendar gaps were preserved, and a three-month target was formed
+only when the exact t+3 observation existed. The post-2022 evaluation
+contains 638 item-month forecasts across 23 forecast-origin months.
+
+\subsection{3.3 External WFP market
+panel}\label{external-wfp-market-panel}
+
+The external panel uses observational WFP retail prices in Nigerian
+naira. Eligible market-commodity-unit series require at least 18
+pre-2022 targets, at least two validation targets, and at least six
+post-2022 targets. The resulting panel contains 366 series, 15 markets,
+25 commodities, 7,123 post-2022 forecasts, and 38 forecast-origin
+months. Post-2022 coverage is concentrated in Borno and Yobe, so this is
+a cross-source and market-level transport test, not a nationally
+representative replication.
+
+\textbf{Table 1. Empirical datasets and roles}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1630}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1630}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1630}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.3261}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.1630}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Dataset}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Period}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Units}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Scale}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Role}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+NBS development panel & Mar 2017-Apr 2024 & 37 states/FCT × 43 items;
+136,826 rows & State-item-month & Model development and locked 2023
+break test \\
+NBS national continuation & Through Apr 2026 & 28 harmonised item
+series; 638 post-2022 forecasts & National item-month & Same-source
+temporal extension and recovery test \\
+WFP market observations & Through 2026 & 366 series; 15 markets; 25
+commodities; 7,123 post-2022 forecasts & Market-commodity-unit-month &
+External source and market-level transport test \\
+\end{longtable}
+
+Notes: The WFP external sample is concentrated in Borno and Yobe after
+the predeclared eligibility screen. The World Bank Real-Time Food Prices
+catalogue is used as a reproducibility reference but its imputed prices
+are not treated as independent observational ground truth.
+
+\subsection{3.4 Forecast target}\label{forecast-target}
+
+For state or market unit s, commodity i, and forecast-origin month t,
+the three-month forward log price change is
+
+\[
+y_{ist}^{(3)}=100\left[\log(P_{is,t+3})-\log(P_{ist})\right].
+\]
+
+The principal target is the conditional 90th percentile
+\(q_{0.90}(y_{ist}^{(3)}\mid\mathcal{I}_t)\), denoted
+\(\mathrm{FIaR}_{0.90}^{(3)}\). Forecasts are issued after month-t
+prices and contemporaneous predictors are observed. The outcome attached
+to forecast origin t becomes available only after month t+3. Therefore,
+at origin t, adaptive updates may use only errors attached to origins
+t-3 or earlier.
+
+\subsection{3.5 Chronological splits and inferential
+status}\label{chronological-splits-and-inferential-status}
+
+The base quantile LightGBM is trained through December 2020.
+Regime-conditioned priors use 2021. Hyperparameters and controller
+penalties use 2022. The original development test is January 2023 to
+January 2024; continuation and external evaluations extend beyond that
+period. The split is chronological throughout, and no random
+cross-validation is used.
+
+The Phase 10 controller is nevertheless an exploratory second-stage
+backtest. Its architecture was proposed after earlier adaptive models
+had already been evaluated on the post-2022 period. The 2023--2026
+estimates therefore demonstrate internal consistency and practical
+promise, not pristine confirmatory superiority. Bootstrap intervals are
+descriptive uncertainty assessments.

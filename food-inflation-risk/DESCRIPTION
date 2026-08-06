@@ -1,0 +1,15 @@
+Package: FoodInflationRiskReplication
+Type: Project
+Title: Food Inflation-at-Risk Replication Materials
+Version: 0.1.0
+Authors@R: person("Maniru", "Ibrahim", role = c("aut", "cre"), email = "maniru.ibrahim@ul.ie")
+Description: Reproducible figure generation and manuscript compilation for the Food Inflation-at-Risk study.
+License: MIT
+Encoding: UTF-8
+Imports:
+    dplyr,
+    ggplot2,
+    lubridate,
+    readr,
+    scales,
+    tidyr
