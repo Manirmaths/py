@@ -1,0 +1,99 @@
+\section{Related literature}\label{related-literature}
+
+\subsection{2.1 Inflation-at-risk and distributional inflation
+forecasting}\label{inflation-at-risk-and-distributional-inflation-forecasting}
+
+Quantile regression provides a direct way to estimate conditional
+distributional features without imposing a Gaussian predictive density
+(\citeproc{ref-koenker1978quantiles}{Koenker and Bassett 1978}). The
+asymmetric quantile or pinball loss is a strictly consistent scoring
+function for a conditional quantile, so it supports coherent
+out-of-sample comparison of upper-tail forecasts
+(\citeproc{ref-gneiting2007proper}{Gneiting and Raftery 2007}).
+Inflation-at-risk studies use this framework to quantify upside and
+downside risks that are not visible in conditional-mean models.
+López-Salido and Loria (\citeproc{ref-lopezsalido2024inflation}{2024})
+show that the tails of the inflation distribution vary substantially
+even when mean inflation appears stable. Banerjee et al.
+(\citeproc{ref-banerjee2024inflation}{2024}) document nonlinear
+exchange-rate and financial-condition effects in emerging economies.
+Other work incorporates dynamic quantile regressions, time-varying
+parameters, and Bayesian shrinkage (Busetti et al., 2015; Korobilis et
+al., 2021).
+
+This paper differs by focusing on a high-dimensional food-price panel, a
+short three-month horizon, and real-time calibration failure after an
+abrupt shift. The goal is predictive rather than causal. The forecast is
+called Food Inflation-at-Risk because it is an upper conditional
+quantile of future item-level food-price inflation; it is not a welfare
+measure and should not be interpreted as the probability of a specific
+macroeconomic event.
+
+\subsection{2.2 Conformal calibration for dependent and shifting
+data}\label{conformal-calibration-for-dependent-and-shifting-data}
+
+Classical conformal prediction obtains finite-sample marginal coverage
+under exchangeability, an assumption violated by dependent and
+non-stationary time series. Adaptive conformal inference updates
+calibration thresholds online to target long-run coverage under
+distribution shift (\citeproc{ref-gibbs2021adaptive}{Gibbs and Candès
+2021}). Later work develops local-regret adaptation, expert aggregation
+over learning rates, and sequential residual-quantile estimation for
+time series (Gibbs and Candès, 2024; Zaffran et al., 2022; Xu and Xie,
+2023). Multi-step procedures explicitly recognise that a forecast error
+may only become observable after the relevant horizon has passed
+(\citeproc{ref-hallberg2024adaptive}{Hallberg Szabadváry 2024}).
+
+The methods used here are conformal-style residual quantile calibrators
+rather than exact conformal prediction sets. They operate on a single
+upper-quantile forecast, use rolling or partially pooled residual
+quantiles, and are evaluated by empirical coverage and pinball loss.
+Dependence, source differences, and data-driven model development mean
+that the forecasts do not carry a distribution-free conditional-coverage
+guarantee. This distinction is retained throughout the paper.
+
+\subsection{2.3 Expert aggregation and delayed
+feedback}\label{expert-aggregation-and-delayed-feedback}
+
+Prediction with expert advice studies how a learner can combine
+forecasts and control regret relative to a reference expert. In
+practical forecasting systems, feedback can be delayed because outcomes
+are observed only after a reporting or forecast horizon. Joulani,
+György, and Szepesvári (\citeproc{ref-joulani2013delayed}{2013}) show
+that delay changes online-learning regret and requires explicit
+information accounting. Expert aggregation has also been used to adapt
+conformal procedures across learning rates and non-stationary
+environments (\citeproc{ref-zaffran2022adaptive}{Zaffran et al. 2022}).
+
+The controller in this paper is an empirical, domain-specific
+implementation of this principle. It combines four transparent tail
+forecasts. We do not claim a new universal regret bound. Instead, the
+contribution is to enforce the exact three-month information delay,
+estimate regime-conditioned expert priors before the structural break,
+penalise unnecessary switching during validation, and evaluate dynamic
+regret relative to an infeasible monthly hindsight oracle.
+
+\subsection{2.4 Granular food-price data and
+forecasting}\label{granular-food-price-data-and-forecasting}
+
+Granular price systems create opportunities for disaggregated
+forecasting and real-time monitoring. Recent evidence shows that
+high-frequency and disaggregated price data can improve short-horizon
+food-inflation nowcasts, although the value of additional data depends
+on coverage and structural stability (\citeproc{ref-beer2026food}{Beer,
+Ferstl, and Graf 2026}). Nigeria is particularly suitable for a granular
+design because the National Bureau of Statistics publishes monthly
+state-level prices for individual foods, fuel, and transport, while WFP
+and the World Bank maintain market-level food-price systems. The NBS
+Selected Food Price Watch is based on price collection across all states
+and the FCT, while the World Bank Real-Time Food Prices system combines
+direct observations with machine-learning estimates and is revised as
+new information arrives (NBS, 2025; World Bank, 2026).
+
+To preserve external validity, the main cross-source test uses
+underlying WFP observations rather than treating World Bank imputed
+values as independent ground truth. This choice sacrifices geographic
+balance: the eligible post-2022 WFP sample is concentrated in Borno and
+Yobe. The same-source NBS continuation and external WFP panel therefore
+answer different questions and are interpreted jointly rather than
+pooled as if they were interchangeable.
